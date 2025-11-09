@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetApp - Intelligent Data Management Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 NetApp Intelligent Data Management System</h1>
+            <p>Real-time data placement optimization and multi-cloud migration</p>
+        </header>
+
+        <!-- Statistics Dashboard -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Objects</h3>
+                <p class="stat-value" id="total-objects">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Size</h3>
+                <p class="stat-value" id="total-size">0 GB</p>
+            </div>
+            <div class="stat-card">
+                <h3>Monthly Cost</h3>
+                <p class="stat-value" id="total-cost">$0.00</p>
+            </div>
+            <div class="stat-card">
+                <h3>Active Migrations</h3>
+                <p class="stat-value" id="active-migrations">0</p>
+            </div>
+        </section>
+
+        <!-- Tier Distribution -->
+        <section class="chart-section">
+            <h2>Storage Tier Distribution</h2>
+            <canvas id="tier-chart"></canvas>
+        </section>
+
+        <!-- Data Objects Table -->
+        <section class="data-section">
+            <div class="section-header">
+                <h2>Data Objects</h2>
+                <button class="btn-primary" onclick="createSampleData()">Create Sample Data</button>
+                <button class="btn-secondary" onclick="batchOptimize()">Batch Optimize</button>
+            </div>
+            <div class="table-container">
+                <table id="objects-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Size (GB)</th>
+                            <th>Tier</th>
+                            <th>Location</th>
+                            <th>Access Count</th>
+                            <th>Cost/Month</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="objects-tbody">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Migrations Section -->
+        <section class="data-section">
+            <div class="section-header">
+                <h2>Active Migrations</h2>
+            </div>
+            <div class="table-container">
+                <table id="migrations-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Object</th>
+                            <th>Source → Target</th>
+                            <th>Progress</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="migrations-tbody">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Real-Time Events -->
+        <section class="data-section">
+            <div class="section-header">
+                <h2>Real-Time Events</h2>
+                <button class="btn-secondary" onclick="toggleStreaming()" id="stream-btn">Start Streaming</button>
+            </div>
+            <div class="events-container" id="events-container">
+            </div>
+        </section>
+
+        <!-- ML Predictions -->
+        <section class="data-section">
+            <div class="section-header">
+                <h2>ML Predictions</h2>
+                <button class="btn-secondary" onclick="trainModel()">Train Model</button>
+            </div>
+            <div id="predictions-container"></div>
+        </section>
+    </div>
+
+    <!-- Modal for Object Details -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
+
+
