@@ -22,7 +22,8 @@ from config import API_HOST, API_PORT, DEBUG
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'netapp-hackathon-2024'
 CORS(app)
-socketio = SocketIO(app, cors_allowed_origins="*")
+# Use threading mode instead of eventlet for Python 3.13 compatibility
+socketio = SocketIO(app, cors_allowed_origins="*", async_mode='threading')
 
 # Initialize database
 init_db()

@@ -20,10 +20,10 @@ def test_imports():
         from ml_predictor import MLPredictor
         from data_consistency_manager import DataConsistencyManager
         from config import STORAGE_TIERS, CLOUD_PROVIDERS
-        print("✓ All imports successful")
+        print("[OK] All imports successful")
         return True
     except Exception as e:
-        print(f"✗ Import error: {e}")
+        print(f"[ERROR] Import error: {e}")
         return False
 
 def test_database():
@@ -34,11 +34,11 @@ def test_database():
         init_db()
         db = SessionLocal()
         count = db.query(DataObject).count()
-        print(f"✓ Database initialized (current objects: {count})")
+        print(f"[OK] Database initialized (current objects: {count})")
         db.close()
         return True
     except Exception as e:
-        print(f"✗ Database error: {e}")
+        print(f"[ERROR] Database error: {e}")
         return False
 
 def test_optimizer():
@@ -47,10 +47,10 @@ def test_optimizer():
     try:
         from data_placement_optimizer import DataPlacementOptimizer
         optimizer = DataPlacementOptimizer()
-        print("✓ Optimizer initialized")
+        print("[OK] Optimizer initialized")
         return True
     except Exception as e:
-        print(f"✗ Optimizer error: {e}")
+        print(f"[ERROR] Optimizer error: {e}")
         return False
 
 def test_migration_service():
@@ -59,10 +59,10 @@ def test_migration_service():
     try:
         from migration_service import MigrationService
         service = MigrationService()
-        print("✓ Migration service initialized")
+        print("[OK] Migration service initialized")
         return True
     except Exception as e:
-        print(f"✗ Migration service error: {e}")
+        print(f"[ERROR] Migration service error: {e}")
         return False
 
 def test_streaming_processor():
@@ -71,10 +71,10 @@ def test_streaming_processor():
     try:
         from streaming_processor import StreamingProcessor
         processor = StreamingProcessor(use_kafka=False, use_mqtt=False)
-        print("✓ Streaming processor initialized")
+        print("[OK] Streaming processor initialized")
         return True
     except Exception as e:
-        print(f"✗ Streaming processor error: {e}")
+        print(f"[ERROR] Streaming processor error: {e}")
         return False
 
 def test_ml_predictor():
@@ -83,10 +83,10 @@ def test_ml_predictor():
     try:
         from ml_predictor import MLPredictor
         predictor = MLPredictor()
-        print("✓ ML predictor initialized")
+        print("[OK] ML predictor initialized")
         return True
     except Exception as e:
-        print(f"✗ ML predictor error: {e}")
+        print(f"[ERROR] ML predictor error: {e}")
         return False
 
 def test_consistency_manager():
@@ -95,10 +95,10 @@ def test_consistency_manager():
     try:
         from data_consistency_manager import DataConsistencyManager
         manager = DataConsistencyManager()
-        print("✓ Consistency manager initialized")
+        print("[OK] Consistency manager initialized")
         return True
     except Exception as e:
-        print(f"✗ Consistency manager error: {e}")
+        print(f"[ERROR] Consistency manager error: {e}")
         return False
 
 def test_config():
@@ -109,10 +109,10 @@ def test_config():
         assert 'hot' in STORAGE_TIERS
         assert 'warm' in STORAGE_TIERS
         assert 'cold' in STORAGE_TIERS
-        print("✓ Configuration loaded correctly")
+        print("[OK] Configuration loaded correctly")
         return True
     except Exception as e:
-        print(f"✗ Configuration error: {e}")
+        print(f"[ERROR] Configuration error: {e}")
         return False
 
 def main():
@@ -138,7 +138,7 @@ def main():
             result = test()
             results.append(result)
         except Exception as e:
-            print(f"✗ Test failed with exception: {e}")
+            print(f"[ERROR] Test failed with exception: {e}")
             results.append(False)
     
     print("\n" + "=" * 60)
@@ -146,10 +146,10 @@ def main():
     print("=" * 60)
     
     if all(results):
-        print("✓ All tests passed! System is ready to use.")
+        print("[SUCCESS] All tests passed! System is ready to use.")
         return 0
     else:
-        print("✗ Some tests failed. Please check the errors above.")
+        print("[FAILED] Some tests failed. Please check the errors above.")
         return 1
 
 if __name__ == '__main__':

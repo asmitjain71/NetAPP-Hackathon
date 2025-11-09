@@ -1,0 +1,21 @@
+# Alternative requirements for Windows if scikit-learn fails to install
+# Install these packages individually to avoid build issues
+
+flask==3.0.0
+flask-cors==4.0.0
+sqlalchemy==2.0.23
+paho-mqtt==1.6.1
+kafka-python==2.0.2
+# scikit-learn - install separately: pip install scikit-learn
+# If that fails, try: pip install --only-binary :all: scikit-learn
+numpy>=1.26.0
+pandas>=2.1.0
+boto3==1.29.7
+azure-storage-blob==12.19.0
+google-cloud-storage==2.14.0
+python-dotenv==1.0.0
+schedule==1.2.0
+requests==2.31.0
+flask-socketio==5.3.6
+eventlet==0.33.3
+
